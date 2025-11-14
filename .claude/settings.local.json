@@ -6,7 +6,8 @@
       "Bash(npm cache clean:*)",
       "Bash(pnpm install class-variance-authority clsx tailwind-merge lucide-react)",
       "Bash(pnpm install @radix-ui/react-scroll-area @radix-ui/react-dialog)",
-      "Bash(pnpm add:*)"
+      "Bash(pnpm add:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []
