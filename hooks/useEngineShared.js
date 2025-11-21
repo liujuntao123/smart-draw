@@ -72,15 +72,26 @@ export function useEngineShared() {
             })),
           );
 
-          userMessage.content = [
-            { type: 'text', text: textContent },
-            ...encodedImages.map((img) => ({
-              type: 'image_url',
-              image_url: {
-                url: `data:${img.mimeType};base64,${img.data}`,
-              },
-            })),
-          ];
+          const safeImages = encodedImages.filter((img) => !!img.data);
+
+          if (safeImages.length > 0) {
+            userMessage.content = [
+              { type: 'text', text: textContent },
+              ...safeImages.map((img) => ({
+                type: 'image_url',
+                image_url: {
+                  url: `data:${img.mimeType};base64,${img.data}`,
+                },
+              })),
+            ];
+
+            // 保存独立的图像 payload，供不同厂商的 LLM 客户端按需序列化
+            userMessage.imagePayloads = safeImages.map((img) => ({
+              data: img.data,
+              mimeType: img.mimeType,
+              name: img.name,
+            }));
+          }
         }
       }
 
