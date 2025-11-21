@@ -1,9 +1,9 @@
-# Smart Diagram
+# Smart Draw
 
 > **Draw any professional and beautiful diagram you can imagine in the simplest way**
 
 ## 🌐 Online Website
-Visit our online website to use directly: https://smart-diagram.aizhi.site/
+Visit our online website to use directly: https://smart-draw.aizhi.site/
 
 ## 中文版本
 阅读中文版本: [README.md](README.md)

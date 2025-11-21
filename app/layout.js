@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Smart Diagram",
+  title: "Smart Draw",
   description: "AI 驱动的图表生成",
 };
 

@@ -64,7 +64,7 @@ const translations = {
       },
       magic: '✨ 接下来，见证奇迹的时刻！'
     },
-    footer: '© 2025 Smart Diagram. 由 AI 驱动. 用 ❤️ 构建'
+    footer: '© 2025 Smart Draw. 由 AI 驱动. 用 ❤️ 构建'
   },
   en: {
     nav: {
@@ -125,7 +125,7 @@ const translations = {
       },
       magic: '✨ And the magic happens!'
     },
-    footer: '© 2025 Smart Diagram. Powered by AI. Built with ❤️'
+    footer: '© 2025 Smart Draw. Powered by AI. Built with ❤️'
   }
 };
 
@@ -174,7 +174,7 @@ export default function LandingPage() {
         <div className="nav-brand">
           <img
           src="/logo.png"
-          alt="Smart Diagram"
+          alt="Smart Draw"
           className="!h-full !border-none w-auto select-none cursor-pointer hover:opacity-80 transition-opacity"
         />
         </div>

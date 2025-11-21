@@ -1,4 +1,4 @@
-# Smart Diagram
+# Smart Draw
 
 > **用自然语言，以最简单的方式绘制任何专业美观的图表**
 

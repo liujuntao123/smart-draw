@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Smart Diagram is an AI-powered diagram generation tool that supports two rendering engines (Draw.io and Excalidraw). Users describe diagrams in natural language, and LLMs generate the corresponding XML (Draw.io) or JSON (Excalidraw) code, which is then rendered on an interactive canvas.
+Smart Draw is an AI-powered diagram generation tool that supports two rendering engines (Draw.io and Excalidraw). Users describe diagrams in natural language, and LLMs generate the corresponding XML (Draw.io) or JSON (Excalidraw) code, which is then rendered on an interactive canvas.
 
 **Tech Stack:** Next.js 16 (App Router) · React 19 · Draw.io · Excalidraw · Tailwind CSS 4 · Monaco Editor
 
