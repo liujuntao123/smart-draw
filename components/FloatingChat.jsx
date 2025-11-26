@@ -425,7 +425,7 @@ export default function FloatingChat({
 
   return (
     <>
-    <Card ref={panelRef} className="fixed top-42 bottom-16 right-2 md:w-[360px] h-auto shadow-2xl flex flex-col z-50 bg-white/95 supports-[backdrop-filter]:bg-white/85 backdrop-blur-xl border border-zinc-200 rounded-[24px] overflow-hidden">
+    <Card ref={panelRef} className="fixed top-42 bottom-16 right-2 md:w-[340px] h-auto shadow-2xl flex flex-col z-50 bg-white/95 supports-[backdrop-filter]:bg-white/85 backdrop-blur-xl border border-zinc-200 rounded-[24px] overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-3 bg-white/50 border-b border-zinc-100/50">
         {/* ✨ v6.0: 左侧 - 引擎切换下拉菜单 */}
@@ -515,11 +515,32 @@ export default function FloatingChat({
       <ScrollArea className="flex-1 px-5 py-2">
         <div className="space-y-6 ">
           {messages.length === 0 ? (
-            <div className="flex flex-col items-center justify-center text-center text-zinc-400 text-sm py-20 gap-3">
-              <div className="w-12 h-12 bg-zinc-50 rounded-2xl flex items-center justify-center mb-2">
-                <WandSparkles className="w-6 h-6 text-zinc-300" />
+            <div className="flex flex-col py-6 gap-4">
+              <div className="text-center text-zinc-400 text-sm mb-2">
+                <p>选择一个示例开始，或直接输入需求</p>
               </div>
-              <p>开始对话，其他的交给AI</p>
+              <div className="flex flex-col gap-2">
+                {[
+                  { text: '画一个用户登录流程图', icon: '🔐' },
+                  { text: '设计一个电商系统架构图', icon: '🏗️' },
+                  { text: '创建一个项目管理思维导图', icon: '🧠' },
+                  { text: '绘制公司组织架构图', icon: '👥' },
+                  { text: '画一个订单状态流转图', icon: '📦' },
+                  { text: '设计用户注册时序图', icon: '⏱️' },
+                ].map((item, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      setInput(item.text);
+                      textareaRef.current?.focus();
+                    }}
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl border border-zinc-100 bg-white hover:bg-zinc-50 hover:border-zinc-200 transition-all text-left group"
+                  >
+                    <span className="text-lg">{item.icon}</span>
+                    <span className="text-sm text-zinc-600 group-hover:text-zinc-900">{item.text}</span>
+                  </button>
+                ))}
+              </div>
             </div>
           ) : (
             messages.map((msg, idx) => {
@@ -1003,7 +1024,7 @@ function StreamingCodeBubble({ codeText }) {
         <pre
           ref={preRef}
           className={cn(
-            'font-mono text-[12px] leading-relaxed px-4 py-3 whitespace-pre-wrap break-words break-all text-zinc-600 max-h-[50vh] overflow-auto w-full max-w-full min-w-0'
+            'font-mono text-[12px] leading-relaxed px-4 py-3 whitespace-pre-wrap break-words break-all text-zinc-600 max-h-[36vh] overflow-auto w-full max-w-full min-w-0'
           )}
         >{codeText}</pre>
       </div>
