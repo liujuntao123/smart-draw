@@ -61,6 +61,9 @@ export default function DrawPage() {
   // Chat面板宽度（用于调整画布padding）
   const [chatPanelWidth, setChatPanelWidth] = useState(0);
 
+  // 待恢复的历史记录（用于引擎切换后自动恢复）
+  const [pendingHistory, setPendingHistory] = useState(null);
+
   // 清空悬浮代码编辑器缓存和内容（在引擎切换时调用）
   const clearFloatingCodeCache = useCallback(() => {
     if (typeof window === 'undefined') return;
@@ -116,6 +119,29 @@ export default function DrawPage() {
       console.error('Failed to save engine type to localStorage:', e);
     }
   }, [engineType]);
+
+  // 引擎切换完成后，自动恢复待处理的历史记录
+  useEffect(() => {
+    if (!pendingHistory) return;
+    // 确保引擎类型已切换到目标类型
+    if (pendingHistory.editor !== engineType) return;
+
+    // 恢复历史记录
+    const restoreHistory = async () => {
+      try {
+        await engine.handleRestoreHistory(pendingHistory);
+        setIsHistoryModalOpen(false);
+        showNotification({ title: '已恢复', message: '历史记录已恢复', type: 'success' });
+      } catch (e) {
+        console.error('Failed to restore history:', e);
+        showNotification({ title: '恢复失败', message: '历史记录恢复失败', type: 'error' });
+      } finally {
+        setPendingHistory(null);
+      }
+    };
+
+    restoreHistory();
+  }, [engineType, pendingHistory, engine, showNotification]);
 
   // Load config on mount and listen for config changes
   useEffect(() => {
@@ -303,12 +329,9 @@ export default function DrawPage() {
         type: 'warning',
         onConfirm: () => {
           clearFloatingCodeCache();
+          // 保存待恢复的历史，引擎切换后由 useEffect 自动恢复
+          setPendingHistory(history);
           setEngineType(history.editor);
-          // 等待引擎切换完成后再恢复历史
-          setTimeout(async () => {
-            const newEngine = useEngine(history.editor);
-            await newEngine.handleRestoreHistory(history);
-          }, 100);
           setConfirmDialog(prev => ({ ...prev, isOpen: false }));
         }
       });
