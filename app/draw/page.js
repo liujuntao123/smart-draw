@@ -11,6 +11,14 @@ import HistoryModal from '@/components/HistoryModal';
 import CombinedSettingsModal from '@/components/CombinedSettingsModal';
 import Notification from '@/components/Notification';
 import ConfirmDialog from '@/components/ConfirmDialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '@/components/ui/dialog';
 import { configService } from '@/lib/config-service';
 import { useEngine } from '@/hooks/useEngine';
 import { drawioProcessor, excalidrawProcessor } from '@/lib/code-processor';
@@ -40,6 +48,7 @@ export default function DrawPage() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false);
   const [isCombinedSettingsOpen, setIsCombinedSettingsOpen] = useState(false);
+  const [isAnnouncementOpen, setIsAnnouncementOpen] = useState(true);
 
   // 确认对话框状态
   const [confirmDialog, setConfirmDialog] = useState({
@@ -477,6 +486,34 @@ export default function DrawPage() {
         message={confirmDialog.message}
         type={confirmDialog.type}
       />
+
+      {/* Announcement Dialog */}
+      <Dialog open={isAnnouncementOpen} onOpenChange={setIsAnnouncementOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>公告</DialogTitle>
+            <DialogDescription>
+              本网站将迁移至更全面强大的新版本：
+              <a
+                href="https://ai-draw-nexus.aizhi.site/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:text-blue-600 underline ml-1"
+              >
+                AI-Draw-Nexus
+              </a>
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <button
+              onClick={() => setIsAnnouncementOpen(false)}
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+            >
+              我知道了
+            </button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
