@@ -42,10 +42,10 @@ export function useExcalidrawEngine() {
    */
   const parseElements = useCallback((jsonText) => {
     try {
-      const fixed = fixJSON(jsonText || '');
+      // const fixed = fixJSON(jsonText || '');
       const optimized = optimizeExcalidrawCode
-        ? optimizeExcalidrawCode(fixed)
-        : fixed;
+        ? optimizeExcalidrawCode(jsonText)
+        : jsonText;
       const data = JSON.parse(optimized);
 
       if (Array.isArray(data)) return data;

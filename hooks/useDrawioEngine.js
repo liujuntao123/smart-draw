@@ -114,8 +114,9 @@ export function useDrawioEngine() {
   const handleCanvasChange = useCallback(
     async (code) => {
       try {
-        const fixedCode = fixUnclosed(code || '', { mode: 'xml' });
-        setUsedCode(fixedCode);
+        // const fixedCode = fixUnclosed(code || '', { mode: 'xml' });
+        // setUsedCode(fixedCode);
+        setUsedCode(code);
       } catch (error) {
         console.error('Canvas change error:', error);
       }
